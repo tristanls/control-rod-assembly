@@ -51,11 +51,11 @@ ControlRodAssembly is an abstraction over a collection of [ControlRods](https://
 
 **Public API**
 
-  * [new ControlRodAssembly(rod, \[rod, ...\])](#new-controlrodassemblyrod-rod)
-  * [controlRodAssembly.add(rod, \[rod, ...\])](#controlrodassemblyaddrod-rod)
+  * [new ControlRodAssembly(rod, \[rod, ...\])](#new-controlrodassemblyrod-rod-)
+  * [controlRodAssembly.add(rod, \[rod, ...\])](#controlrodassemblyaddrod-rod-)
   * [controlRodAssembly.connect()](#controlrodassemblyconnect)
   * [controlRodAssembly.disconnect()](#controlrodassemblydisconnect)
-  * [controlRodAssembly.remove(rod, \[rod, ...\])](#controlrodassemblyremoverod-rod)
+  * [controlRodAssembly.remove(rod, \[rod, ...\])](#controlrodassemblyremoverod-rod-)
   * [controlRodAssembly.rods()](#controlrodassemblyrods)
 
 ### new ControlRodAssembly(rod, [rod, ...])
