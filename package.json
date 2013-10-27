@@ -1,0 +1,27 @@
+{
+  "name": "control-rod-assembly",
+  "version": "0.1.0",
+  "description": "Control structure for connecting and disconnecting multiple ControlRods at once",
+  "scripts": {
+    "test": "node scripts/test.js"
+  },
+  "main": "index.js",
+  "devDependencies": {
+    "control-rod": "0.1.0",
+    "nodeunit": "0.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tristanls/control-rod-assembly.git"
+  },
+  "keywords": [
+    "control",
+    "assembly",
+    "events",
+    "handlers",
+    "connect",
+    "disconnect"
+  ],
+  "author": "Tristan Slominski <tristan.slominski@gmail.com>",
+  "license": "MIT"
+}
