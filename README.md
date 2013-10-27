@@ -13,17 +13,17 @@ var ControlRod = require('control-rod'),
     ControlRodAssembly = require('control-rod-assembly'),
     events = require('events');
 
-var emitter1 = new events.EventEmitter();
-var emitter2 = new events.EventEmitter();
-var emitter3 = new events.EventEmitter();
+var storage = new events.EventEmitter();
+var publicserver = new events.EventEmitter();
+var peerServer = new events.EventEmitter();
 
-var rod1 = new ControlRod(emitter1, 'foo', function () { /* ... */ });
-var rod2 = new ControlRod(emitter1, 'bar', function () { /* ... */ });
-var rod3 = new ControlRod(emitter2, 'foo', function () { /* ... */ });
-var rod4 = new ControlRod(emitter2, 'bar', function () { /* ... */ });
-var rod5 = new ControlRod(emitter3, 'foo', function () { /* ... */ });
-var rod6 = new ControlRod(emitter3, 'bar', function () { /* ... */ });
-var rod7 = new ControlRod(emitter3, 'baz', function () { /* ... */ });
+var rod1 = new ControlRod(storage, 'foo', function () { /* ... */ });
+var rod2 = new ControlRod(storage, 'bar', function () { /* ... */ });
+var rod3 = new ControlRod(publicserver, 'foo', function () { /* ... */ });
+var rod4 = new ControlRod(publicserver, 'bar', function () { /* ... */ });
+var rod5 = new ControlRod(peerServer, 'foo', function () { /* ... */ });
+var rod6 = new ControlRod(peerServer, 'bar', function () { /* ... */ });
+var rod7 = new ControlRod(peerServer, 'baz', function () { /* ... */ });
 
 var rodAssembly = new ControlRodAssembly(rod1, rod2, rod3, rod4, rod5);
 rodAssembly.add(rod6, rod7);
