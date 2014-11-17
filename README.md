@@ -28,13 +28,20 @@ var rod7 = new ControlRod(peerServer, 'baz', function () { /* ... */ });
 var rodAssembly = new ControlRodAssembly(rod1, rod2, rod3, rod4, rod5);
 rodAssembly.add(rod6, rod7);
 
+rodAssembly.on('connected', function () {
+    console.log("assembly connected");
+});
+rodAssembly.on('disconnected', function () {
+    console.log("assembly disconnected");
+});
+
 rodAssembly.connect();
 // all rods are connected
 rodAssembly.disconnect();
 // all rods are disconnected
 
 rodAssembly.rods();
-// [rod1, rod2, rod3, rod4, rod5, rod6, rod7] array of rods in assembly 
+// [rod1, rod2, rod3, rod4, rod5, rod6, rod7] array of rods in assembly
 ```
 
 ## Test
@@ -57,6 +64,8 @@ ControlRodAssembly is an abstraction over a collection of [ControlRods](https://
   * [controlRodAssembly.disconnect()](#controlrodassemblydisconnect)
   * [controlRodAssembly.remove(rod, \[rod, ...\])](#controlrodassemblyremoverod-rod-)
   * [controlRodAssembly.rods()](#controlrodassemblyrods)
+  * [Event 'connected'](#event-connected)
+  * [Event 'disconnected'](#event-disconnected)
 
 ### new ControlRodAssembly(rod, [rod, ...])
 
@@ -87,3 +96,15 @@ Removes specified ControlRods from assembly.
 ### controlRodAssembly.rods()
 
   * Return: _Array_ An array of `ControlRod`s in this assembly.
+
+### Event `connected`
+
+  * `function () {}`
+
+Emitted once all the control rods in the assembly are connected.
+
+### Event `disconnected`
+
+  * `function () {}`
+
+Emitted once all the control rods in the assembly are disconnected.

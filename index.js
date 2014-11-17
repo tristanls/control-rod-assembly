@@ -1,11 +1,11 @@
 /*
 
-index.js - "control-rod-assembly": Control structure for connecting and 
+index.js - "control-rod-assembly": Control structure for connecting and
                                    disconnecting multiple ControlRods at once
 
 The MIT License (MIT)
 
-Copyright (c) 2013 Tristan Slominski
+Copyright (c) 2013-2014 Tristan Slominski
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -31,14 +31,20 @@ OTHER DEALINGS IN THE SOFTWARE.
 */
 "use strict";
 
+var events = require('events');
+var util = require('util');
+
 /*
   * `rod, [rod, ...]`: _ControlRod_ Zero, one, or more control rods to initialize with.
 */
 var ControlRodAssembly = module.exports = function ControlRodAssembly () {
     var self = this;
+    events.EventEmitter.call(self);
 
     self._rods = Array.prototype.slice.call(arguments);
 };
+
+util.inherits(ControlRodAssembly, events.EventEmitter);
 
 /*
   * `rod, [rod, ...]`: _ControlRod_ Zero, one, or more control rods to add.
@@ -56,15 +62,17 @@ ControlRodAssembly.prototype.connect = function connect () {
             rod.connect();
 
     });
+    self.emit("connected");
 };
 
 ControlRodAssembly.prototype.disconnect = function disconnect () {
     var self = this;
     self._rods.forEach(function (rod) {
-        if (typeof rod.disconnect === 'function') 
+        if (typeof rod.disconnect === 'function')
             rod.disconnect();
 
     });
+    self.emit("disconnected");
 };
 
 /*
@@ -76,7 +84,7 @@ ControlRodAssembly.prototype.remove = function remove () {
         var index = self._rods.indexOf(rod);
         if (index >= 0)
             self._rods.splice(index, 1);
-        
+
     });
 };
 

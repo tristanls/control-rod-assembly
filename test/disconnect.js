@@ -4,7 +4,7 @@ disconnect.js - controlRodAssembly.disconnect() test
 
 The MIT License (MIT)
 
-Copyright (c) 2013 Tristan Slominski
+Copyright (c) 2013-2014 Tristan Slominski
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -62,6 +62,23 @@ test['disconnect() disconnects all control rods in assembly'] = function (test) 
     test.strictEqual(rod1.connected, false);
     test.strictEqual(rod2.connected, false);
     test.strictEqual(rod3.connected, false);
-    test.strictEqual(rod4.connected, false);    
+    test.strictEqual(rod4.connected, false);
+    test.done();
+};
+
+test['disconnect() emits "disconnected" event after disconnecting all rods in assembly'] = function (test) {
+    test.expect(4);
+    var emitter1 = new events.EventEmitter();
+    var handler1 = function () {};
+    var rod1 = new ControlRod(emitter1, 'e1h1', handler1);
+    test.strictEqual(rod1.connected, false);
+    var assembly = new ControlRodAssembly(rod1);
+    assembly.connect();
+    test.strictEqual(rod1.connected, true);
+    assembly.on("disconnected", function () {
+        test.ok(true);
+    });
+    assembly.disconnect();
+    test.strictEqual(rod1.connected, false);
     test.done();
 };
