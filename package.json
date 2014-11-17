@@ -1,6 +1,6 @@
 {
   "name": "control-rod-assembly",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Control structure for connecting and disconnecting multiple ControlRods at once",
   "scripts": {
     "test": "node scripts/test.js"
